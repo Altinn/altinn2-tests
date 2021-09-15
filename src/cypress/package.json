@@ -1,0 +1,30 @@
+{
+  "name": "automatedportaltest",
+  "version": "1.0.0",
+  "description": "automated tests for altinn sbl",
+  "main": "index.js",
+  "scripts": {
+    "check": "prettier -c src/**/*.js",
+    "format": "prettier -w src/**/*.js",
+    "cy:open": "cypress open --env environment=%npm_config_env%",
+    "merge-reports": "jrm reports/combined.xml \"reports/*.xml\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://tfs.ai-dev.brreg.no/Altinn/Altinn/_git/AutomatedPortalTest"
+  },
+  "devDependencies": {
+    "cypress": "^6.8.0",
+    "cypress-file-upload": "^5.0.2",
+    "cypress-parallel": "^0.1.9",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "fs-extra": "^9.1.0",
+    "junit-report-merger": "^2.2.1",
+    "path": "^0.12.7",
+    "pdf-parse": "^1.1.1",
+    "prettier": "2.2.1"
+  }
+}
