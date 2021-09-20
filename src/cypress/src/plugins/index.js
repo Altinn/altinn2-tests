@@ -4,7 +4,12 @@ const pdf = require('pdf-parse')
 
 const downloadsPath = path.join(__dirname, '..', '..', 'downloads')
 
-module.exports = (on, config) => {
+function getJsonDataFromFile(path, file) {
+  const pathToConfigFile = path.resolve(path, `${file}.json`)
+  return fs.readJson(pathToConfigFile)
+}
+
+module.exports = async (on, config) => {
   on('task', {
     getPdfContent(pdfName) {
       const pdfPathname = path.join(downloadsPath, pdfName)
@@ -13,10 +18,33 @@ module.exports = (on, config) => {
     },
   })
 
-  function getConfigurationByFile(file) {
-    const pathToConfigFile = path.resolve('src/config', `${file}.json`)
-    return fs.readJson(pathToConfigFile)
+  var baseUrls = await getJsonDataFromFile('src/config', 'baseurl')
+  switch (config.env.environment) {
+    case 'at21':
+      config.baseUrl = baseUrls.at21
+      config.env = await getJsonDataFromFile('src/data', 'at21')
+      break
+    case 'at22':
+      config.baseUrl = baseUrls.at22
+      config.env = await getJsonDataFromFile('src/data', 'at22')
+      break
+    case 'at23':
+      config.baseUrl = baseUrls.at23
+      config.env = await getJsonDataFromFile('src/data', 'at23')
+      break
+    case 'at24':
+      config.baseUrl = baseUrls.at24
+      config.env = await getJsonDataFromFile('src/data', 'at24')
+      break
+    case 'tt02':
+      config.baseUrl = baseUrls.tt02
+      config.env = await getJsonDataFromFile('src/data', 'tt02')
+      break
+    case 'prod':
+      config.baseUrl = baseUrls.prod
+      config.env = await getJsonDataFromFile('src/data', 'prod')
+      break
   }
-  const file = config.env.environment || 'at22'
-  return getConfigurationByFile(file)
+
+  return config
 }

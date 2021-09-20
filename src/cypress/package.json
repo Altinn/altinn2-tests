@@ -4,8 +4,10 @@
   "description": "automated tests for altinn sbl",
   "main": "index.js",
   "scripts": {
-    "check": "prettier -c src/**/*.js",
-    "format": "prettier -w src/**/*.js",
+    "eslint:check": "eslint \"src/**\"",
+    "eslint:fix": "eslint \"src/**\" --fix",
+    "prettier:check": "prettier -c src/**/*.js",
+    "prettier:format": "prettier -w src/**/*.js",
     "cy:open": "cypress open --env environment=%npm_config_env%",
     "merge-reports": "jrm reports/combined.xml \"reports/*.xml\""
   },

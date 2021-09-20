@@ -18,10 +18,7 @@ describe('Organisation profile Information', () => {
 
   it('Org Forms and Services', () => {
     cy.get(formsAndServices.formsheader).should('be.visible').click()
-    cy.get(formsAndServices.rolesList)
-      .should('exist')
-      .should('not.be.empty')
-      .should('contain', 'Daglig leder')
+    cy.get(formsAndServices.rolesList).should('exist').should('not.be.empty').should('contain', 'Daglig leder')
   })
 
   it('Org Notification Address', () => {
@@ -45,10 +42,7 @@ describe('Organisation profile Information', () => {
         .focus()
         .clear()
         .type('91008912')
-      cy.get(form)
-        .find(orgNotificationAddress.saveButton)
-        .should('be.visible')
-        .click()
+      cy.get(form).find(orgNotificationAddress.saveButton).should('be.visible').click()
     })
   })
 })

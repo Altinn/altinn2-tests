@@ -14,9 +14,7 @@ Cypress.Commands.add('selectOrgAsReportee', () => {
     .click()
   cy.get(partySelect.updateContact.form).then(($form) => {
     if ($form.length) {
-      cy.get(partySelect.updateContact.form)
-        .find(partySelect.updateContact.toInbox)
-        .click()
+      cy.get(partySelect.updateContact.form).find(partySelect.updateContact.toInbox).click()
     }
   })
 })

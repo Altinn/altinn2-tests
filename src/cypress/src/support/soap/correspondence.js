@@ -7,10 +7,7 @@ const baseUrl = Cypress.config('baseUrl')
 Cypress.Commands.add('sendCorrespondence', (reportee) => {
   cy.readFile('src/fixtures/correspondence.xml').then((xml) => {
     xml = xml.replace('PlaceHolder_reportee', reportee)
-    xml = xml.replace(
-      'PlaceHolder_Ref',
-      `EUF_${Math.floor(Math.random() * 100000)}`,
-    )
+    xml = xml.replace('PlaceHolder_Ref', `EUF_${Math.floor(Math.random() * 100000)}`)
     return cy.request({
       method: 'POST',
       url: `${baseUrl}/ServiceEngineExternal/CorrespondenceAgencyExternalBasic.svc`,
