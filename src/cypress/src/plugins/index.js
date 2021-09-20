@@ -4,9 +4,9 @@ const pdf = require('pdf-parse')
 
 const downloadsPath = path.join(__dirname, '..', '..', 'downloads')
 
-function getJsonDataFromFile(path, file) {
-  const pathToConfigFile = path.resolve(path, `${file}.json`)
-  return fs.readJson(pathToConfigFile)
+function getJsonDataFromFile(pathToFile, file) {
+  const pathToJsonDataFile = path.resolve(pathToFile, `${file}.json`)
+  return fs.readJson(pathToJsonDataFile)
 }
 
 module.exports = async (on, config) => {
